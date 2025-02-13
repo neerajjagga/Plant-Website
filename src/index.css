@@ -6,6 +6,10 @@
 @tailwind utilities;
 
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     @apply bg-green-950 text-white font-Jost tracking-wider;
 }

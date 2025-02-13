@@ -29,17 +29,17 @@ const Header = () => {
                         <li
                             onClick={toggleHamburgerMenu}
                             className='nav-primary nav-hover'>
-                            <a href="#">About</a>
+                            <a href="#about">About</a>
                         </li>
                         <li
                             onClick={toggleHamburgerMenu}
                             className='nav-primary nav-hover'>
-                            <a href="#">Popular</a>
+                            <a href="#popular">Popular</a>
                         </li>
                         <li
                             onClick={toggleHamburgerMenu}
                             className='nav-primary nav-hover'>
-                            <a href="#">Review</a>
+                            <a href="#reviews">Review</a>
                         </li>
                     </ul>
 

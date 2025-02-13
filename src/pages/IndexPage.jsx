@@ -1,13 +1,40 @@
-import { Amphora, Facebook, Flower2, Instagram, Leaf, Linkedin, ShoppingBag, Twitter } from "lucide-react"
+import { Amphora, ArrowUp, Facebook, Flower2, Instagram, Leaf, Linkedin, ShoppingBag, Twitter } from "lucide-react"
 import homePlantImage from '../assets/img/home.png'
-import { motion } from "motion/react"
-import { servicesData } from './../data/services';
-import ServicesCard from "../components/ServicesCard";
-import AboutPlant1 from '../assets/img/plant-2.png';
-import AboutPlant2 from '../assets/img/plant-1.png';
-import AboutLeaf1 from '../assets/img/leaf-3.png';
+import { AnimatePresence, motion } from "motion/react"
+
+import Footer from "../components/Footer";
+import About from '../components/About';
+import PopularChoice from "../components/PopularChoice";
+import Reviews from "../components/Reviews";
+import Services from "../components/Services";
+
+import { useEffect, useState } from "react";
 
 const IndexPage = () => {
+
+    const [showScrollUpButton, setShowScrollUpButton] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 300) {
+                setShowScrollUpButton(true);
+            } else {
+                setShowScrollUpButton(false);
+            }
+        }
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+
     return (
         <div>
             <main>
@@ -177,122 +204,37 @@ const IndexPage = () => {
                     </div>
                 </section>
 
-                {/* services */}
-                <div className="bg-white py-5">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 container">
-                        {servicesData.map((service, index) => (
-                            <ServicesCard key={index} service={service} />
-                        ))}
-                    </div>
-                </div>
+                <Services />
 
-                {/* services */}
-                <div className="container pt-5 py-5 relative overflow-hidden">
-                    <div className="flex flex-col gap-5 items-center">
-                        <div className="flex flex-col items-center">
-                            <h2 className="text-2xl md:text-3xl font-bold text-yellow-500">About Us</h2>
-                            <p className="text-slate-300 font-Lobster text-sm md:text-lg xl:text-xl">Follow instruction for more</p>
-                        </div>
+                <About />
 
-                        {/* about cards */}
-                        <div className="flex flex-col gap-10">
-                            <div
-                                className="flex flex-col items-center lg:flex-row gap-4 ">
-                                <motion.img
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    transition={{
-                                        duration: 0.6,
-                                        delay: 0.2,
-                                        ease: "easeOut"
-                                    }}
-                                    viewport={{ once: true }}
-                                    className="h-48 md:h-60 xl:h-72" src={AboutPlant1} alt="Plant Image" />
-                                <div className="flex flex-col gap-2">
-                                    <motion.span
-                                        initial={{ x: -20, opacity: 0 }}
-                                        whileInView={{ x: 0, opacity: 1 }}
-                                        transition={{
-                                            duration: 0.6,
-                                            delay: 0.2,
-                                            ease: "easeOut"
-                                        }}
-                                        viewport={{ once: true }}
-                                        className="text-2xl xl:text-4xl font-semibold">
-                                        Make your <span class="text-yellow-500">organic</span>  <br />
-                                        garden
-                                    </motion.span>
-                                    <motion.p
-                                        initial={{ x: 20, opacity: 0 }}
-                                        whileInView={{ x: 0, opacity: 1 }}
-                                        transition={{
-                                            duration: 0.6,
-                                            delay: 0.2,
-                                            ease: "easeOut"
-                                        }}
-                                        viewport={{ once: true }}
-                                        className="font-Lobster text-slate-300 text-sm xl:text-lg lg:text-md">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis ratione rem maxime veniam cum libero voluptas tempora aut saepe similique, eos corporis. Expedita culpa consequatur animi deleniti ullam adipisci iure sequi dolores modi aliquam laudantium,
-                                        explicabo nobis quia id reprehenderit.?
-                                    </motion.p>
-                                </div>
-                            </div>
+                <PopularChoice />
 
-                            <div
-                                className="flex flex-col items-center lg:flex-row gap-4 ">
-                                <motion.img
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    transition={{
-                                        duration: 0.8,
-                                        delay: 0.2,
-                                        ease: "easeOut"
-                                    }}
-                                    viewport={{ once: true }}
-                                    className="h-48 md:h-60 xl:h-72" src={AboutPlant2} alt="Plant Image" />
-                                <div className="flex flex-col gap-2">
-                                    <motion.span
-                                        initial={{ x: -20, opacity: 0 }}
-                                        whileInView={{ x: 0, opacity: 1 }}
-                                        transition={{
-                                            duration: 0.6,
-                                            delay: 0.2,
-                                            ease: "easeOut"
-                                        }}
-                                        viewport={{ once: true }}
-                                        className="text-2xl xl:text-4xl font-semibold">
-                                        Make your <span class="text-yellow-500">organic</span>  <br />
-                                        garden
-                                    </motion.span>
-                                    <motion.p
-                                        initial={{ x: 20, opacity: 0 }}
-                                        whileInView={{ x: 0, opacity: 1 }}
-                                        transition={{
-                                            duration: 0.6,
-                                            delay: 0.2,
-                                            ease: "easeOut"
-                                        }}
-                                        viewport={{ once: true }}
-                                        className="font-Lobster text-slate-300 text-sm  xl:text-lg lg:text-md">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis ratione rem maxime veniam cum libero voluptas tempora aut saepe similique, eos corporis. Expedita culpa consequatur animi deleniti ullam adipisci iure sequi dolores modi aliquam laudantium,
-                                        explicabo nobis quia id reprehenderit.?
-                                    </motion.p>
-                                </div>
-                            </div>
-                        </div>
+                <Reviews />
 
+                <Footer />
+                
+                <AnimatePresence>
+                    {showScrollUpButton && (
                         <motion.div
-                            initial={{ y: -50, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
-                            transition={{
-                                duration: 1,
-                                delay: 0.2,
-                                ease: "easeOut"
-                            }}
-                            viewport={{ once: true }}
-                            className="absolute -right-10 -top-5">
-                            <img className="h-28 md:h-32 lg:h-40 xl:h-56 " src={AboutLeaf1} alt="Leaf Image" />
+                            key="scrollToTop"
+                            initial={{ y: 40, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ opacity: 0, y: 40 }}
+                            transition={{ duration: 0.6 }}
+                            className="fixed bottom-2 right-2 z-50"
+                        >
+                            <div
+                                onClick={scrollToTop}
+                                className="text-white bg-yellow-500 p-2 rounded-full shadow-lg cursor-pointer"
+                                role="button"
+                                aria-label="Scroll to top"
+                            >
+                                <ArrowUp size={25} />
+                            </div>
                         </motion.div>
-                    </div>
-                </div>
+                    )}
+                </AnimatePresence>
             </main>
         </div>
     )

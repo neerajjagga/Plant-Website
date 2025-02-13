@@ -20,7 +20,7 @@ export default {
       center : true,
       padding : {
         DEFAULT : "12px",
-        md: "32px"
+        lg: "32px"
       }
     } 
   },
